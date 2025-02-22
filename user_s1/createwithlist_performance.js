@@ -6,8 +6,8 @@ import { Trend } from 'k6/metrics';
 let responseTime = new Trend('response_time');
 
 export const options = {
-  vus: 400, // Jumlah VUs
-  duration: '1m', // Durasi pengujian
+  vus: 1700, // Jumlah VUs
+  iterations: 1700,
 };
 
 export default function () {
