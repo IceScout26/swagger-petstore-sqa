@@ -1,5 +1,7 @@
 import http from 'k6/http';
-import { check } from 'k6';
+import {
+  check
+} from 'k6';
 
 export let options = {
   vus: 1,
@@ -8,14 +10,23 @@ export let options = {
 
 export default function () {
   // Membuat payload unik berdasarkan VU ID
-  const payload = JSON.stringify({
-    id: __VU, // Gunakan ID VU sebagai ID order unik
-    petId: __VU, // Gunakan ID VU sebagai ID pet unik
-    quantity: Math.floor(Math.random() * 10) + 1, // Jumlah random antara 1-10
-    shipDate: new Date().toISOString(), // Tanggal pengiriman saat ini
-    status: 'placed', // Status order
-    complete: true, // Order selesai
-  });
+  const payload = 
+  // JSON.stringify({
+  //   id: __VU, // Gunakan ID VU sebagai ID order unik
+  //   petId: __VU, // Gunakan ID VU sebagai ID pet unik
+  //   quantity: Math.floor(Math.random() * 10) + 1, // Jumlah random antara 1-10
+  //   shipDate: new Date().toISOString(), // Tanggal pengiriman saat ini
+  //   status: 'placed', // Status order
+  //   complete: true, // Order selesai
+  // });
+  JSON.stringify({
+    id: "invalid_id", // ❌ Invalid ID (string instead of number)
+    petId: null, // ❌ Invalid petId (null value)
+    quantity: -5, // ❌ Invalid quantity (negative number)
+    shipDate: "invalid_date", // ❌ Invalid date format
+    status: 123, // ❌ Invalid status (number instead of string)
+    complete: "not_boolean" // ❌ Invalid complete (string instead of boolean)
+  }); // ❌ Invalid payload
 
   const url = `https://petstore.swagger.io/v2/store/order`;
 
