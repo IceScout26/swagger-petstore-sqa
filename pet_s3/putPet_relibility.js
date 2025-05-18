@@ -6,8 +6,8 @@ import { Trend } from 'k6/metrics';
 let responseTime = new Trend('response_time');
 
 export const options = {
-  vus: 50, // Jumlah VUs
-  duration: '10m', // Durasi pengujian
+  vus: 400, // Jumlah VUs
+  duration: '1m', // Durasi pengujian
 };
 
 export default function () {
@@ -32,7 +32,7 @@ export default function () {
   const headers = { 'Content-Type': 'application/json' };
 
   // Kirim request ke API
-  const res = http.post('https://petstore.swagger.io/v2/pet', payload, { headers });
+  const res = http.put('https://petstore.swagger.io/v2/pet', payload, { headers });
 
   // Menyimpan metrik tambahan
   responseTime.add(res.timings.duration);
