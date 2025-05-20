@@ -12,7 +12,7 @@ export default function () {
   // const status = 'pending'; // Uji status "pending"
   // const status = 'sold'; // Uji status "sold"
   // const status = 'invalid_status'; // Uji status tidak valid
-  const status = 918932198379812734981789347189371897398138289; // Uji status tidak valid (angka besar)
+  const status = "longpetid".repeat(1000); // Uji status tidak valid (angka besar)
 
   // Jika tidak ada yang di-uncomment, gunakan variasi status berdasarkan iterasi
   // const statuses = ['available', 'pending', 'sold'];
@@ -35,6 +35,7 @@ export default function () {
   check(res, {
     'Status is 200': (r) => r.status === 200,
     'Status is 400': (r) => r.status === 400,
+    'Status is 414': (r) => r.status === 414,
     'Status is 415': (r) => r.status === 415,
     'Status is 429': (r) => r.status === 429,
     'Status is 500': (r) => r.status === 500,
